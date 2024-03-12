@@ -1,6 +1,6 @@
 package jm.task.core.jdbc.dao;
 
-import jakarta.persistence.Table;
+
 import jm.task.core.jdbc.model.User;
 
 import jm.task.core.jdbc.util.Util;
@@ -41,7 +41,7 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public void dropUsersTable() {
-        try (Session session = sessionFactory.openSession();) {
+        try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
 
             session.createNativeQuery("DROP TABLE IF EXISTS users").executeUpdate();

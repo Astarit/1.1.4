@@ -2,10 +2,7 @@ package jm.task.core.jdbc.dao;
 
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.util.Util;
-import net.bytebuddy.implementation.Implementation;
 
-import javax.swing.*;
-import java.awt.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,19 +14,19 @@ public class UserDaoJDBCImpl implements UserDao {
 
     public void createUsersTable() {
 
-//        String sql = """
-//                CREATE TABLE IF NOT EXISTS users (id BIGSERIAL PRIMARY KEY,
-//                name VARCHAR(55) NOT NULL ,
-//                lastname VARCHAR(55) NOT NULL ,
-//                age INT NOT NULL );
-//                """;
-//        try (Connection connection = Util.open(); Statement statement = connection.createStatement()) {
-//            if (statement.execute(sql)) {
-//                System.out.println("Таблица успешно создана");
-//            }
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
+        String sql = """
+                CREATE TABLE IF NOT EXISTS users (id BIGSERIAL PRIMARY KEY,
+                name VARCHAR(55) NOT NULL ,
+                lastname VARCHAR(55) NOT NULL ,
+                age INT NOT NULL );
+                """;
+        try (Connection connection = Util.open(); Statement statement = connection.createStatement()) {
+            if (statement.execute(sql)) {
+                System.out.println("Таблица успешно создана");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -48,20 +45,20 @@ public class UserDaoJDBCImpl implements UserDao {
     public void saveUser(String name, String lastName, byte age) {
 
 
-//        String SQL = "INSERT INTO users (name, lastName, age) VALUES (?, ?, ?)";
-//
-//        try (Connection connection = Util.open(); PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
-//
-//            preparedStatement.setString(1, name);
-//            preparedStatement.setString(2, lastName);
-//            preparedStatement.setByte(3, age);
-//            preparedStatement.executeUpdate();
-//
-//            System.out.println("Пользователь с именем " + name + " добавлен в базу");
-//        } catch (SQLException e) {
-//            e.printStackTrace(); // Обработка исключений
-//            System.out.println("Ошибка при добавлении пользователя");
-//        }
+        String SQL = "INSERT INTO users (name, lastName, age) VALUES (?, ?, ?)";
+
+        try (Connection connection = Util.open(); PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
+
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, lastName);
+            preparedStatement.setByte(3, age);
+            preparedStatement.executeUpdate();
+
+            System.out.println("Пользователь с именем " + name + " добавлен в базу");
+        } catch (SQLException e) {
+            e.printStackTrace(); // Обработка исключений
+            System.out.println("Ошибка при добавлении пользователя");
+        }
     }
 
     public void removeUserById(long id) {
