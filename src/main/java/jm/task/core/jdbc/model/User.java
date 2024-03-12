@@ -1,19 +1,19 @@
 package jm.task.core.jdbc.model;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
-@Table (name = "users")
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column (name = "id", nullable = false)
+    @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column (name = "firstname", length = 15, nullable = false)
+    @Column (name = "name", nullable = false, length = 100)
     private String name;
 
-    @Column (name = "lastname", length = 20, nullable = false)
+    @Column (name = "lastname", nullable = false, length = 100)
     private String lastName;
 
     @Column (name = "age", nullable = false)
