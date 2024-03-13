@@ -45,8 +45,8 @@ public final class Util {
 
     private static SessionFactory buildSessionFactory() {
         try {
-
-            return new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
+            Configuration configuration = getHibernateConfiguration(); // Получаем настроенную конфигурацию
+            return configuration.buildSessionFactory();
         } catch (Throwable ex) {
             System.err.println("Инициализация SessionFactory не удалась." + ex);
             throw new ExceptionInInitializerError(ex);
@@ -55,6 +55,22 @@ public final class Util {
 
     public static SessionFactory getSessionFactory() {
         return sessionFactory;
+    }
+
+    public static Configuration getHibernateConfiguration() {
+        Configuration configuration = new Configuration();
+
+        configuration.setProperty("hibernate.connection.driver_class", "org.postgresql.Driver");
+        configuration.setProperty("hibernate.connection.url", "jdbc:postgresql://localhost:5433/postgres");
+        configuration.setProperty("hibernate.connection.username", "postgres");
+        configuration.setProperty("hibernate.connection.password", "postgres");
+        configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+        configuration.setProperty("hibernate.hbm2ddl.auto", "update");
+        configuration.setProperty("hibernate.show_sql", "true");
+
+        configuration.addAnnotatedClass(jm.task.core.jdbc.model.User.class);
+
+        return configuration;
     }
 
 }
