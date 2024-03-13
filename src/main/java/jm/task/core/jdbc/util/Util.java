@@ -45,7 +45,7 @@ public final class Util {
 
     private static SessionFactory buildSessionFactory() {
         try {
-            Configuration configuration = getHibernateConfiguration(); // Получаем настроенную конфигурацию
+            Configuration configuration = getHibernateConfiguration();
             return configuration.buildSessionFactory();
         } catch (Throwable ex) {
             System.err.println("Инициализация SessionFactory не удалась." + ex);
